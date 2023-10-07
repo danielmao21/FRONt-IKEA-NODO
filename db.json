@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "username": "felipe",
+      "password": "admin",
+      "id": 2
+    },
+    {
+      "username": "stefa",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "username": "andres",
+      "password": "12345",
+      "id": 4
+    }
+  ],
+  "courses": [
+    {
+      "imageURL": "https://via.placeholder.com/80x80",
+      "tittle": "Meditacion para principiantes",
+      "desc": "Aprende a meditar",
+      "hours": 10,
+      "users": [],
+      "id": 1
+    },
+    {
+      "imageURL": "https://via.placeholder.com/80x80",
+      "tittle": "Yoga para la salud mental",
+      "desc": "Equilibra tu mente a traves del deporte",
+      "hours": 10,
+      "users": [],
+      "id": 2
+    },
+    {
+      "imageURL": "https://via.placeholder.com/80x80",
+      "tittle": "Nutricion saludable",
+      "desc": "Aprende a alimentarte",
+      "hours": 10,
+      "users": [],
+      "id": 3
+    }
+  ]
+}

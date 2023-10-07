@@ -1,0 +1,48 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- Develop
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.17.1'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm update
+  displayName: 'update dependences'
+
+- script: |
+    npm install -g @angular/cli@15.1.4
+  displayName: 'npm install'
+
+- script: |
+    ng build
+  displayName: 'create build'
+
+#copiar los archivos que se estan compilando usando la version 2
+- task: CopyFiles@2
+  inputs:
+    Contents: 'build/**' #que contenga todos los archivos
+    TargetFolder: '$(build.ArtifactStagingDirectory)' #se envian a esta ruta
+
+#se comprime todos estos arcihvos en un zio
+#- task: ArchiveFiles@2 
+ # inputs:
+  # rootFolderOrFile: '$(build.ArtifactStagingDirectory)' #se indica la carpeta donde trae los archivos
+   #includeRootFolder: true #que incluya el folder 
+   #archiveType: zip  #l formato en que lo queremos
+   #archiveFile: '$(build.ArtifactStagingDirectory)/$(Build.BuildId)' #el nombre del archivo sera dinamico y por ID
+   #replaceExistingArchive: true 
+   # se publica el archivo .zip para que otras opciones de azure lo usen
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'dist'
